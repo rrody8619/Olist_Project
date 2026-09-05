@@ -3,7 +3,7 @@ import os
 import sys
 import yaml
 
-# قراءة الإعدادات من config.yaml
+
 with open("config/config.yaml", "r") as f:
     config = yaml.safe_load(f)
 

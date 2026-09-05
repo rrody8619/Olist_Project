@@ -31,7 +31,7 @@ def test_predict_endpoint_success():
 def test_predict_endpoint_invalid_payload():
     payload = {
         "order_purchase_timestamp": "invalid_date",
-        "total_price": -50.0  # قيمة غير معقولة للسعر
+        "total_price": -50.0 
     }
     response = client.post("/predict", json=payload)
-    assert response.status_code == 422  # Validation Error
+    assert response.status_code == 422  

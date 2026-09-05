@@ -16,13 +16,12 @@ engine = create_engine(db_url)
 
 print(" Testing Database Connection & Running SQL Queries...\n")
 
-# 1. Querying orders table
+
 orders_df = pd.read_sql("SELECT * FROM orders LIMIT 5;", con=engine)
 print(" First 5 Orders:")
 print(orders_df[['order_id', 'customer_id', 'order_status', 'order_delivered_customer_date']])
 print("-" * 60)
 
-# 2. Testing JOIN between orders and customers using customer_id
 join_query = """
 SELECT 
     o.order_id, 
