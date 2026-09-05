@@ -1,10 +1,16 @@
-# Olist Order Delivery Prediction Service
+# 📦 Olist Order Delivery Status Prediction
+## Production-Grade MLOps & FastAPI Microservice
 
-An end-to-end, production-ready MLOps microservice designed to predict Olist order delivery delays. Built with FastAPI, containerized using Docker, validated with Great Expectations, and fully tested with automated CI/CD workflows.
+[![CI/CD Pipeline](https://github.com/rrody8619/Olist_Project/actions/workflows/ci.yml/badge.svg)](https://github.com/rrody8619/Olist_Project/actions)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.100%2B-005571?logo=fastapi)](https://fastapi.tiangolo.com/)
+[![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
+
+An end-to-end, production-ready MLOps microservice designed to predict e-commerce order delivery delays using the Brazilian Olist dataset. This system integrates automated data validation, robust feature engineering, machine learning modeling, DVC artifact tracking, and a containerized FastAPI backend.
 
 ---
 
-## 🛠️ Project Architecture & Structure
+## 🏗️ Project Architecture
 
 ```text
 Olist_Project/
@@ -21,62 +27,64 @@ Olist_Project/
 │   ├── labeling.py
 │   ├── logger.py
 │   ├── predict.py
-│   └── validation.py     # Great Expectations data quality checks
+│   └── validation.py     # Data quality checks
 ├── tests/                # Pytest automation suite
 ├── Dockerfile            # Container configuration
 ├── docker-compose.yml    # Multi-container orchestration
 ├── requirements.txt      # Project dependencies
 └── pytest.ini            # Pytest configuration
+🚀 Key Features
+Asynchronous FastAPI Service: High-performance RESTful API endpoints supporting single (/predict) and batch inference.
 
+Strict Data Validation: Runtime payload verification to ensure data integrity before entering the pipeline.
 
-🚀 Key Features & Best Practices
-FastAPI Web Service: Asynchronous, RESTful API endpoints for single (/predict) and batch (/predict-batch) inference.
+Structured Logging: Centralized tracking for prediction requests, latency, and system execution.
 
-Data Validation: Runtime payload verification via Great Expectations to prevent invalid features from entering the inference pipeline.
+Automated CI/CD Workflows: GitHub Actions pipeline validating the complete test suite and building container images on every push.
 
-Structured Logging: Granular prediction, latency, and system performance logging.
-
-Automated Testing: 100% passing pytest suite covering feature engineering, model inference, and API endpoints.
-
-CI/CD Integration: Automated GitHub Actions pipeline verifying test suite execution and Docker container builds on every commit.
-
-Containerization: Isolated, reproducible runtime using Docker and docker-compose.
+Containerized Deployment: Fully isolated, reproducible runtime environments configured via Docker and Docker Compose.
 
 🏁 Quick Start Guide
-1. Run Locally via Python
+1. Local Execution
 Bash
 # Install dependencies
 pip install -r requirements.txt
 
-# Execute test suite
-python -m pytest tests/
+# Run test suite
+python -m pytest tests/ -v
 
 # Start FastAPI server
 uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 2. Run via Docker
 Bash
-# Build Docker image
+# Build the image
 docker build -t olist-inference-api:latest .
 
-# Run Container
+# Run the container
 docker run -p 8000:8000 olist-inference-api:latest
 3. Run via Docker Compose
 Bash
 docker compose up --build
-Access Swagger UI documentation at: http://localhost:8000/docs
+🌐 API Documentation: Access the interactive Swagger UI locally at http://localhost:8000/docs
 
-🧪 Running Validation & Tests
-To execute the full test suite manually:
+🛠️ Technologies Used
+Language: Python 3.10+
 
-Bash
-python -m pytest tests/ -v
+Machine Learning & Data: Scikit-learn, Pandas, NumPy, Joblib
 
----
+Data Versioning: DVC (Data Version Control)
 
-#### **2. تنفيذ أسباب الإضافة والـ Commit مجدداً**
-بعد إنشائه وحفظه، شغلي الأوامر في الـ Terminal:
+Backend API: FastAPI, Uvicorn
+
+Testing & Quality: Pytest
+
+Containerization: Docker, Docker Compose
+
+CI/CD: GitHub Actions
+
+
 
 ```powershell
-git add .
-git commit -m "feat: complete Task 3 with testing, validation, CI/CD, and documentation"
+git add README.md
+git commit -m "docs: upgrade README.md with professional MLOps structure"
 git push origin main
