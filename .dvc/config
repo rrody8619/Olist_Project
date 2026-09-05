@@ -1,4 +1,6 @@
 [core]
     remote = storage
 ['remote "storage"']
-    url = D:\MLOPS\dvc_storage
+    url = gdrive://114-mVVVOFtLgSMZcdyMycYARE2zQ4tJd
+    gdrive_use_service_account = false
+    gdrive_service_account_json_file_path = ../single-object-507719-f6-a5a0b53a8b15.json
