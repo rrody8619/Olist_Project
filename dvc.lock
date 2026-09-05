@@ -57,22 +57,66 @@ stages:
     deps:
     - path: data/processed/train_fe.parquet
       hash: md5
-      md5: bc299bdbe3d511a364f2672a9a1e4e04
-      size: 836281
+      md5: 44ef67a1fbd3f0d33c102b4804ae198a
+      size: 15097198
     - path: data/processed/val_fe.parquet
       hash: md5
-      md5: 76086d3d5ee8c8a319298c584b2a8385
-      size: 163353
+      md5: ad24dd6d32df915fb2cc2fb61d127e47
+      size: 2100608
     - path: models/feature_cols.joblib
       hash: md5
-      md5: da2f54a8edabda90540954decf84b4a1
-      size: 184
+      md5: 0a81662376a0757c99d531b3349013a8
+      size: 195
     - path: src/train.py
       hash: md5
-      md5: b4318d085a7167be3178532fb4954b9f
-      size: 1211
+      md5: 095d0ceb8d890edc29c0acad8865b885
+      size: 995
     outs:
     - path: models/model.joblib
       hash: md5
-      md5: 3bdc2f8b3c5a65af6ed49d73d1eddd39
-      size: 111298025
+      md5: 3e92d5fc04fc47776af24348fc49029a
+      size: 122183785
+  feature_engineering:
+    cmd: python -m src.feature_engineering
+    deps:
+    - path: data/processed/test.parquet
+      hash: md5
+      md5: 87a7bb495fc0b7028fa8b04d7f2e40e3
+      size: 1963543
+    - path: data/processed/train.parquet
+      hash: md5
+      md5: f037270621d95eb70ad13b4ef6f023b1
+      size: 14168513
+    - path: data/processed/val.parquet
+      hash: md5
+      md5: 65250125804fbf8bbb8f4611c23d0255
+      size: 1959794
+    - path: src/feature_engineering.py
+      hash: md5
+      md5: 19400c7cb1a761baa494e047f9099ce7
+      size: 2995
+    outs:
+    - path: data/processed/test_fe.parquet
+      hash: md5
+      md5: c44bb1100136609e3a3f57c820846660
+      size: 2100713
+    - path: data/processed/train_fe.parquet
+      hash: md5
+      md5: 44ef67a1fbd3f0d33c102b4804ae198a
+      size: 15097198
+    - path: data/processed/val_fe.parquet
+      hash: md5
+      md5: ad24dd6d32df915fb2cc2fb61d127e47
+      size: 2100608
+    - path: models/feature_cols.joblib
+      hash: md5
+      md5: 0a81662376a0757c99d531b3349013a8
+      size: 195
+    - path: models/imputer.joblib
+      hash: md5
+      md5: d737705c1f56078eb4f073ff03ea8cdb
+      size: 999
+    - path: models/scaler.joblib
+      hash: md5
+      md5: 48ba37e4d54a52357fa091fed0541e54
+      size: 1287

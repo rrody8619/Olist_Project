@@ -24,6 +24,21 @@ stages:
     - data/processed/val.parquet
     - data/processed/test.parquet
 
+  feature_engineering:
+    cmd: python -m src.feature_engineering
+    deps:
+    - data/processed/train.parquet
+    - data/processed/val.parquet
+    - data/processed/test.parquet
+    - src/feature_engineering.py
+    outs:
+    - data/processed/train_fe.parquet
+    - data/processed/val_fe.parquet
+    - data/processed/test_fe.parquet
+    - models/feature_cols.joblib
+    - models/imputer.joblib
+    - models/scaler.joblib
+
   train:
     cmd: python src/train.py
     deps:
