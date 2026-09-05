@@ -1,0 +1,5 @@
+=== MLOps Task 2: EDA Findings Summary ===
+1. Data Shape: Train set contains 67533 rows and 33 columns.
+2. Target Imbalance: ~8% of orders are late, requiring specialized metrics (ROC-AUC, PR-AUC).
+3. Missing Values: Found mainly in delivery timestamps for unfulfilled orders.
+4. Numerical Features: Price and freight costs show strong skewness.

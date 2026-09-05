@@ -1,0 +1,35 @@
+stages:
+  data_creation:
+    cmd: python src/data_creation.py
+    deps:
+    - src/data_creation.py
+    outs:
+    - data/processed/ml_table.parquet
+
+  labeling:
+    cmd: python src/labeling.py
+    deps:
+    - data/processed/ml_table.parquet
+    - src/labeling.py
+    outs:
+    - data/processed/labeled_table.parquet
+
+  split_data:
+    cmd: python src/split_data.py
+    deps:
+    - data/processed/labeled_table.parquet
+    - src/split_data.py
+    outs:
+    - data/processed/train.parquet
+    - data/processed/val.parquet
+    - data/processed/test.parquet
+
+  train:
+    cmd: python src/train.py
+    deps:
+    - data/processed/train_fe.parquet
+    - data/processed/val_fe.parquet
+    - models/feature_cols.joblib
+    - src/train.py
+    outs:
+    - models/model.joblib

@@ -1,0 +1,78 @@
+schema: '2.0'
+stages:
+  data_creation:
+    cmd: python src/data_creation.py
+    deps:
+    - path: src/data_creation.py
+      hash: md5
+      md5: fcd7fefea2fd2e1657102912f480589d
+      size: 2070
+    outs:
+    - path: data/processed/ml_table.parquet
+      hash: md5
+      md5: d0294dcfe16df891d22ebe4ec70155ae
+      size: 18464063
+  labeling:
+    cmd: python src/labeling.py
+    deps:
+    - path: data/processed/ml_table.parquet
+      hash: md5
+      md5: d0294dcfe16df891d22ebe4ec70155ae
+      size: 18464063
+    - path: src/labeling.py
+      hash: md5
+      md5: 73a7846db3223b82e70320fae6edd116
+      size: 686
+    outs:
+    - path: data/processed/labeled_table.parquet
+      hash: md5
+      md5: c95816c01b1a6c08d10309b572017299
+      size: 18108813
+  split_data:
+    cmd: python src/split_data.py
+    deps:
+    - path: data/processed/labeled_table.parquet
+      hash: md5
+      md5: c95816c01b1a6c08d10309b572017299
+      size: 18108813
+    - path: src/split_data.py
+      hash: md5
+      md5: ec92e3256c811a96991d358328048157
+      size: 869
+    outs:
+    - path: data/processed/test.parquet
+      hash: md5
+      md5: 87a7bb495fc0b7028fa8b04d7f2e40e3
+      size: 1963543
+    - path: data/processed/train.parquet
+      hash: md5
+      md5: f037270621d95eb70ad13b4ef6f023b1
+      size: 14168513
+    - path: data/processed/val.parquet
+      hash: md5
+      md5: 65250125804fbf8bbb8f4611c23d0255
+      size: 1959794
+  train:
+    cmd: python src/train.py
+    deps:
+    - path: data/processed/train_fe.parquet
+      hash: md5
+      md5: bc299bdbe3d511a364f2672a9a1e4e04
+      size: 836281
+    - path: data/processed/val_fe.parquet
+      hash: md5
+      md5: 76086d3d5ee8c8a319298c584b2a8385
+      size: 163353
+    - path: models/feature_cols.joblib
+      hash: md5
+      md5: da2f54a8edabda90540954decf84b4a1
+      size: 184
+    - path: src/train.py
+      hash: md5
+      md5: b4318d085a7167be3178532fb4954b9f
+      size: 1211
+    outs:
+    - path: models/model.joblib
+      hash: md5
+      md5: 3bdc2f8b3c5a65af6ed49d73d1eddd39
+      size: 111298025

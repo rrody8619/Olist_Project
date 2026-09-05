@@ -1,0 +1,8 @@
+data/
+models/
+.env
+
+models/*.joblib
+
+models/*.joblib
+models/*.pkl

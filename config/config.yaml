@@ -1,0 +1,13 @@
+paths:
+  artifacts_dir: "models"
+  imputer_path: "models/imputer.joblib"
+  scaler_path: "models/scaler.joblib"
+  features_path: "models/feature_cols.joblib"
+  model_path: "models/model.joblib"
+  log_dir: "logs"
+  log_file: "logs/app.log"
+
+model:
+  name: "RandomForestClassifier"
+  version: "1.0.0"
+  threshold: 0.5

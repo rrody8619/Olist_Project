@@ -1,0 +1,6 @@
+=== MLOps Task 2: Model Results Summary ===
+- Final Test ROC-AUC: 0.7455
+- Class 1 (Late Delivery) Recall: 0.63
+- Class 1 Precision: 0.18
+- Accuracy: 0.73
+- Artifact Saved: ../artifacts/model.joblib
