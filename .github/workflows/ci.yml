@@ -1,24 +1,19 @@
 name: MLOps Continuous Integration Pipeline
-
 on:
   push:
     branches: [ "main", "master" ]
   pull_request:
     branches: [ "main", "master" ]
-
 jobs:
   test-and-lint:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-
       - name: Set up Python 3.10
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
-
       - name: Cache Pip Packages
         uses: actions/cache@v3
         with:
@@ -26,24 +21,32 @@ jobs:
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
-
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
+      - name: Configure DVC Google Drive credentials
+        env:
+          DVC_GDRIVE_CLIENT_ID: ${{ secrets.DVC_GDRIVE_CLIENT_ID }}
+          DVC_GDRIVE_CLIENT_SECRET: ${{ secrets.DVC_GDRIVE_CLIENT_SECRET }}
+          DVC_GDRIVE_CREDENTIALS_DATA: ${{ secrets.DVC_GDRIVE_CREDENTIALS_DATA }}
+        run: |
+          dvc remote modify --local storage gdrive_client_id "$DVC_GDRIVE_CLIENT_ID"
+          dvc remote modify --local storage gdrive_client_secret "$DVC_GDRIVE_CLIENT_SECRET"
+          mkdir -p ~/.cache/pydrive2fs/"$DVC_GDRIVE_CLIENT_ID"
+          echo "$DVC_GDRIVE_CREDENTIALS_DATA" > ~/.cache/pydrive2fs/"$DVC_GDRIVE_CLIENT_ID"/default.json
+      - name: DVC Pull
+        run: |
+          dvc pull
       - name: Run Pytest Suite
         run: |
           python -m pytest tests/
-
   docker-build-check:
     needs: test-and-lint
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-
       - name: Build Docker Image
         run: |
           docker build -t olist-inference-api:latest .
