@@ -6,7 +6,6 @@ pyyaml
 fastapi
 uvicorn
 pytest
-dvc
+dvc[gdrive]
 great-expectations==0.18.12
 httpx
-
