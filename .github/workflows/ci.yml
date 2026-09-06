@@ -35,6 +35,9 @@ jobs:
           dvc remote modify --local storage gdrive_client_secret "$DVC_GDRIVE_CLIENT_SECRET"
           mkdir -p ~/.cache/pydrive2fs/"$DVC_GDRIVE_CLIENT_ID"
           echo "$DVC_GDRIVE_CREDENTIALS_DATA" > ~/.cache/pydrive2fs/"$DVC_GDRIVE_CLIENT_ID"/default.json
+          echo "---- checking credentials file ----"
+          ls -la ~/.cache/pydrive2fs/"$DVC_GDRIVE_CLIENT_ID"/
+          python3 -c "import json, os; json.load(open(os.path.expanduser('~/.cache/pydrive2fs/$DVC_GDRIVE_CLIENT_ID/default.json'))); print('JSON is valid')"
       - name: DVC Pull
         run: |
           dvc pull
