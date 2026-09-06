@@ -10,6 +10,7 @@ def predictor():
 def sample_input():
     return pd.DataFrame([{
         'order_purchase_timestamp': '2018-05-10 10:00:00',
+        'order_estimated_delivery_date': '2018-05-20 00:00:00',
         'total_price': 150.0,
         'total_freight': 20.0,
         'total_items': 1,
